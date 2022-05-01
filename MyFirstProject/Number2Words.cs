@@ -96,54 +96,54 @@ namespace Number2WordsConverter
             return array;
         }
 
-        private string NumberUnits(int num)
+        private string NumberUnits(int value)
         {
-            return name1[num];
+            return name1[value];
         }
 
-        private string NumberTens(int num)
+        private string NumberTens(int value)
         {
-            return name3[num - 2];
+            return name3[value - 2];
         }
 
-        private string NumberTenToNineteen(int num)
+        private string NumberTenToNineteen(int value)
         {
-            return name2[num];
+            return name2[value];
         }
 
-        private string NumberHundreds(int num)
+        private string NumberHundreds(int value)
         {
-            if (num == 1)
+            if (value == 1)
             {
-                num = 0;
+                value = 0;
             }
             else
             {
-                num = 1;
+                value = 1;
             }
-            return name4[num];
+            return name4[value];
         }
 
-        private string NumberThousands(int num, int a, int b, int c)
+        private string NumberThousands(int value, int valueBefore, int valueTwiceBifore, int position)
         {
-            if (num == 1 && a != 1) //Tūkstantis
+            if (value == 1 && valueBefore != 1) //Tūkstantis
             {
-                num = c - 4;
+                value = position - 4;
             }
-            else if (num > 1 && a != 1) //Tūkstančiai
+            else if (value > 1 && valueBefore != 1) //Tūkstančiai
             {
-                num = c - 3;
+                value = position - 3;
             }
-            else if (a == 1 || ((a == 0 && b != 0) || (num == 0 && a >= 2))) //Tūkstančių
+            else if (valueBefore == 1 || ((valueBefore == 0 && valueTwiceBifore != 0) || (value == 0 && valueBefore >= 2))) //Tūkstančių
             {
-                num = c - 2;
+                value = position - 2;
             }
-            else if (num == 0 && a == 0 && b == 0)
+            else if (value == 0 && valueBefore == 0 && valueTwiceBifore == 0)
             {
-                return ""; //Tuščia reikšmė
+                return null; //Tuščia reikšmė
             }
 
-            return name5[num];
+            return name5[value];
         }
     }
 }
